@@ -16,4 +16,4 @@ while (temp !== null) {
     console.log(temp.value);
     temp = temp.next;
     // console.log(temp);
-}
+}   
