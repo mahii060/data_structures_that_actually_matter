@@ -83,11 +83,56 @@ class LinkedList {
     }
 
     remove(index) {
-        const leadingNode = this._traverseToIndex(index - 1);
-        // The node i want to remove 
-        const nodeToRemove = leadingNode.next;
-        // the node i want to place at leadingNode's next যেটা রিমুভ করতে চাই (needToRemove) সেটার next কে leadingNode এর next এর মধ্যে সেট করে দিলেই হয়ে যাবে। 
-        leadingNode.next = nodeToRemove.next
+        // when i want to remove the first node
+        // 1. bounds check
+        if (index < 0 || index >= this.length) {
+            console.error('Index out of bounds');
+            return undefined;
+        }
+
+        // 2. remove head (index === 0)
+        if (index === 0) {
+            const nodeToRemove = this.head;
+            this.head = this.head.next;        // move head forward
+            // if list had only one node, update tail as well
+            if (this.length === 1) {
+                this.tail = null;
+            }
+            this.length--;
+            return nodeToRemove;               // optional: return removed node
+        }
+
+        // 3. remove from middle or tail
+        const leadingNode = this._traverseToIndex(index - 1); // guaranteed valid because of bounds check
+        const nodeToRemove = leadingNode.next;                // the node we will remove
+
+        // link over the nodeToRemove
+        leadingNode.next = nodeToRemove.next;
+
+        // if we removed the last node, update tail
+        if (leadingNode.next === null) {
+            this.tail = leadingNode;
+        }
+
+        this.length--;
+        return nodeToRemove;
+
+
+        // // If i want to remove from the middle
+        // const leadingNode = this._traverseToIndex(index - 1);
+        // // The node i want to remove 
+        // const nodeToRemove = leadingNode.next;
+
+        // // the node i want to place at leadingNode's next যেটা রিমুভ করতে চাই (needToRemove) সেটার next কে leadingNode এর next এর মধ্যে সেট করে দিলেই হয়ে যাবে। 
+
+        // leadingNode.next = nodeToRemove.next;
+
+        // // removing node from the last of the linked list
+        // if (leadingNode.next === null) {
+        //     this.tail = leadingNode;
+        //     this.length--
+        // }
+
     }
 
     //private helper method
@@ -113,13 +158,14 @@ class LinkedList {
     }
 }
 const linkedList = new LinkedList();
-linkedList.append("A") // *0
-linkedList.append("B") // *1
-linkedList.append("C") // *2
-linkedList.append("D") // *3
+// linkedList.append("A") // *0
+// linkedList.append("B") // *0
+// linkedList.append("C") // *2
+linkedList.append("D") // *0
 
 linkedList.print()
 
-linkedList.remove(2)
+linkedList.remove(0)
+// linkedList.remove(1)
 
 linkedList.print()
