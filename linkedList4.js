@@ -44,7 +44,23 @@ class LinkedList {
     }
 
     // insert node at any index 
-    insert() { }
+    insert(index, value) {
+        // Checking valid index
+        if (index < 0 || index > this.length) {
+            console.error("Index is out of reach")
+            return undefined;
+        }
+
+        // Checking if the index is 0 which is add node at the beginning
+        if (index === 0) {
+            return this.prepend(value);
+        }
+
+        // If the index is equal to length that means node will be added at the last of the linked list.
+        if (index === this.length) {
+            return this.append(value)
+        }
+    }
 
     // remove node from any index
     remove() { }
