@@ -15,7 +15,7 @@ class QueueLinkedList {
         const newNode = new Node(value)
         if (!this.head) {
             this.head = newNode;
-            this.tail = this.head; // which is best practice. this.tail = this.head || newNode
+            this.tail = newNode; // which is best practice. this.tail = this.head || newNode
         } else {
             this.tail.next = newNode;
             this.tail = newNode
@@ -28,6 +28,8 @@ class QueueLinkedList {
         // Checking if there is node in the queue
         if (this.isEmpty()) return null
 
+        const dequeuedNode = this.head;
+
         if (this.length === 1) {
             this.head = null;
             this.tail = null;
@@ -35,10 +37,13 @@ class QueueLinkedList {
             this.head = this.head.next;
         }
         this.length--;
-        return this;
+
+        // detach the dequeued node
+        dequeuedNode.next = null
+        return dequeuedNode.value;
     }
     peek() {
-        return this.head ? this.head : null
+        return this.head ? this.head.value : null
     }
 
     isEmpty() {
@@ -61,11 +66,8 @@ queueLinkedList.enqueue(2)
 queueLinkedList.enqueue(3)
 queueLinkedList.enqueue(4)
 queueLinkedList.enqueue(5)
-queueLinkedList.print()
-console.log(queueLinkedList);
 
-queueLinkedList.dequeue()
-queueLinkedList.dequeue()
-queueLinkedList.dequeue()
-queueLinkedList.print()
-console.log(queueLinkedList);
+console.log(queueLinkedList.dequeue());
+// queueLinkedList.dequeue()
+// queueLinkedList.print()
+// console.log(queueLinkedList);
