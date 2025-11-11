@@ -28,7 +28,20 @@ class LinkedList {
     }
 
     // Add node at the beginning of the linked list
-    prepend() { }
+    prepend(value) {
+        const newNode = new Node(value);
+        if (this.head === null) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.next = this.head; // first create link with the newNode.next to this.head
+            this.head = newNode; // then set the newNode as the this.head
+        }
+
+        this.length++;
+
+        return this;
+    }
 
     // insert node at any index 
     insert() { }
@@ -48,4 +61,9 @@ const newLinkedList = new LinkedList();
 newLinkedList.append(1)
 newLinkedList.append(2)
 newLinkedList.append(3)
+
+newLinkedList.prepend(33)
+newLinkedList.prepend(22)
+newLinkedList.prepend(11)
+
 console.log(newLinkedList);
