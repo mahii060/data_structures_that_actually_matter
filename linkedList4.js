@@ -62,7 +62,7 @@ class LinkedList {
         }
 
         // Add node in the middle of the linked list
-        const leadingNode = this._traverseToIndex(index);
+        const leadingNode = this._traverseToIndex(index - 1);
         const holdingNode = leadingNode.next;
 
         const newNode = new Node(value);
@@ -82,6 +82,7 @@ class LinkedList {
             return undefined
         }
 
+        // If i want to remove the first node from the linked list
         if (index === 0) {
             this.head = this.head.next;
             // If there is only one node in the linked list.
