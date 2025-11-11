@@ -12,6 +12,7 @@ class LinkedList {
         this.length = 0;
     }
     // Add node at the last of the linked list
+    // O(1)
     append(value) {
         const newNode = new Node(value)
 
@@ -32,6 +33,7 @@ class LinkedList {
     }
 
     // Add node to the beginning of the linked list
+    // O(1)
     prepend(value) {
         const newNode = new Node(value)
         if (!this.head) {
@@ -49,6 +51,7 @@ class LinkedList {
         return this;
     }
 
+    // Worst Cast:=> O(n)  Best Case:=>O(1)
     insert(index, value) {
         // Checking if the index is valid
 
@@ -86,6 +89,7 @@ class LinkedList {
 
     }
 
+    // Worst Cast:=> O(n)  Best Case:=>O(1)
     remove(index) {
         // Checking index validity
         if (index === undefined) {
@@ -129,7 +133,7 @@ class LinkedList {
         }
         return currentNode;
     }
-
+    // O(n)
     print() {
         const arr = [];
         let currentNode = this.head;
@@ -143,13 +147,13 @@ class LinkedList {
 
 const linkedList = new LinkedList()
 
-linkedList.append("A") // * 0
-linkedList.append("B") // * 1
-linkedList.append("C") // * 2
-linkedList.append("D") // * 3
+linkedList.append(1) // * 0
+linkedList.append(2) // * 1
+linkedList.append(3) // * 2
+linkedList.append(4) // * 3
 
 // linkedList.remove()
-linkedList.insert(4)
+// linkedList.insert(4)
 
 // linkedList.prepend(3)
 // linkedList.prepend(2)
